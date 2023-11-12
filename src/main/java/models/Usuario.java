@@ -31,7 +31,7 @@ public class Usuario {
 	}
 	
 	public DBQuery getDBQuery() {
-		String	tableName  = "lojinha.usuarios";
+		String	tableName  = "suaquadra.usuarios";
 		String	fieldsName  ="idUsuario,email,senha,idNivelUsuario,nome,cpf,endereco,bairro,cidade,uf,cep,telefone,foto,ativo";  
 		String	fieldKey	="idUsuario";
 		return( new DBQuery(tableName, fieldsName, fieldKey));
@@ -315,5 +315,3 @@ public class Usuario {
 		this.ativo = ativo;
 	}
 }
-
-

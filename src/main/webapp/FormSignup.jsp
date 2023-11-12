@@ -60,59 +60,59 @@
 		
 			<div class="mb-3 mt-3">
 		    	<label for="nome">Nome: </label>
-		      	<input type="text" class="form-control" id="nome" placeholder="Nome" name="nome">
+		      	<input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" required>
 		    </div>
 		    
 		    		    
 		    <div class="mb-3 mt-3">
 				    <label for="cep" class="form-label">cpf:</label>
-				    <input type="text" class="form-control" id="cpf" placeholder="cpf" name="cpf">
+				    <input type="text" class="form-control" id="cpf" placeholder="cpf" name="cpf" required>
 			</div>
 				
 		    
 		    <div class="mb-3 mt-3">
 				    <label for="cep" class="form-label">CEP:</label>
-				    <input type="text" class="form-control" id="cep" placeholder="cep" name="cep">
+				    <input type="text" class="form-control" id="cep" placeholder="cep" name="cep" required>
 			</div>
 				
 			<div class="mb-3 mt-3">
 				    <label for="logradouro" class="form-label address-fields">Endereço: </label>
-				    <input type="text" class="form-control address-fields" id="logradouro" placeholder="logradouro" name="logradouro">
+				    <input type="text" class="form-control address-fields" id="logradouro" placeholder="logradouro" name="logradouro" required>
 			</div>
 				
 			<div class="mb-3 mt-3">
 				    <label for="complemento" class="form-label address-fields">Complemento: </label>
-				    <input type="text" class="form-control address-fields" id="complemento" placeholder="complemento" name="complemento">
+				    <input type="text" class="form-control address-fields" id="complemento" placeholder="complemento" name="complemento" required>
 			</div>
 				
 			<div class="mb-3 mt-3">
 				    <label for="bairro" class="form-label address-fields">Bairro:</label>
-				    <input type="text" class="form-control address-fields" id="bairro" placeholder="bairro" name="bairro">
+				    <input type="text" class="form-control address-fields" id="bairro" placeholder="bairro" name="bairro" required>
 			</div>
 				
 			<div class="mb-3 mt-3">
 				    <label for="localidade" class="form-label address-fields">Municipio:</label>
-				    <input type="text" class="form-control address-fields" id="cidade" placeholder="localidade" name="cidade">
+				    <input type="text" class="form-control address-fields" id="cidade" placeholder="localidade" name="cidade" required>
 			</div>
 				
 			<div class="mb-3 mt-3">
 				    <label for="uf" class="form-label address-fields">uf:</label>
-				    <input type="text" class="form-control address-fields" id="uf" placeholder=" uf" name="uf">
+				    <input type="text" class="form-control address-fields" id="uf" placeholder=" uf" name="uf" required>
 			</div>
 		
 			<div class="mb-3 mt-3">
 		    	<label for="email">Email:</label>
-		      	<input type="text" class="form-control" id="email" placeholder="Email" name="email">
+		      	<input type="text" class="form-control" id="email" placeholder="Email" name="email" required>
 		    </div>
 		    
 		    <div class="mb-3">
 		      <label for="pwd">Senha:</label>
-		      <input type="password" class="form-control" id="pwd" placeholder="Senha" name="pswd">
+		      <input type="password" class="form-control" id="pwd" placeholder="Senha" name="pswd" required>
 		    </div>
 		    
 		    <div class="mb-3">
 		      <label for="pwd">Confirmar Senha:</label>
-		      <input type="password" class="form-control" id="pwd2" placeholder="Confirmar Senha" name="pswd2">
+		      <input type="password" class="form-control" id="pwd2" placeholder="Confirmar Senha" name="pswd2" required>
 		    </div>
 		    <input type="hidden" name="action" value="save">
     		<button type="button" id="btnFrmLogin" class="btn btn-primary">Enviar</button>
@@ -128,9 +128,9 @@
 		$("#btnFrmLogin").click( function(){
 			var url = "usuario";
 			var dataForm = $("#frmLogin").serialize();
-			$("#msgRequest").html("HTTP REQUEST: "+dataForm);
+			//$("#msgRequest").html("HTTP REQUEST: "+dataForm);
 			$.post( url, dataForm, function(data, status) {
-		    $("#msgResponse").html("HTTP RESPONSE:" + JSON.stringify( data ));
+		    //$("#msgResponse").html("HTTP RESPONSE:" + JSON.stringify( data ));
 		    if(data.idUsuario == '0'){
 		    	alert(data.idUsuario);
 		    	alert("E-mail ou cpf já cadastrado");
