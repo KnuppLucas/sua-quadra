@@ -56,10 +56,8 @@ public class CtrlUsuario extends HttpServlet {
 			out.write( outJson ) ;
 		} break;
 		case "save": {
-			String idUsuario= request.getParameter("idUsuario");
 			String email 	= request.getParameter("email");
 			String senha 	= request.getParameter("pswd");
-			String idNivelUsuario = request.getParameter("idNivelUsuario");
 			String nome 	= request.getParameter("nome");
 			String cpf 		= request.getParameter("cpf");
 			String endereco = request.getParameter("logradouro");
@@ -67,17 +65,21 @@ public class CtrlUsuario extends HttpServlet {
 			String cidade 	= request.getParameter("cidade");
 			String uf 		= request.getParameter("uf");
 			String cep 		= request.getParameter("cep");
-			//String telefone = request.getParameter("telefone");
 			
 			Usuario usuario = new Usuario().checkEmail(email);
 			
 			if(usuario.getEmail() != null) {
-				System.out.println("\n Email já cadastrado");
 				usuario.setIdUsuario(0);
 			}else {
-				usuario = new Usuario(0, email, senha, 1, nome, cpf, endereco, bairro, cidade, uf, cep, "", "", "S");
-				usuario.save();
-				usuario = new Usuario().checkEmail(email);
+				usuario = new Usuario().checkCPF(cpf);
+				if(usuario.getEmail() != null) {
+					usuario.setIdUsuario(0);
+				}
+				else {
+					usuario = new Usuario(0, email, senha, 1, nome, cpf, endereco, bairro, cidade, uf, cep, "", "", "S");
+					usuario.save();
+					usuario = new Usuario().checkEmail(email);
+				}
 			}
 			String outJson = usuario.toJson();
 			out.write(outJson) ;
