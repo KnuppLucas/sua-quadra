@@ -8,6 +8,9 @@ CREATE TABLE nivelusuarios(
   PRIMARY KEY (idNivelUsuario)
 );
 
+INSERT INTO nivelusuarios(nivel) VALUE('Funcionario');
+INSERT INTO nivelusuarios(nivel) VALUE('Gerente');
+
 CREATE TABLE usuarios(
   idUsuario int(11) NOT NULL AUTO_INCREMENT,
   email varchar(100) DEFAULT NULL,
