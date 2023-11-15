@@ -57,8 +57,9 @@ CREATE TABLE locacao(
   locacao_id INTEGER PRIMARY KEY NOT NULL,
   quadra_id INTEGER,
   locacao_data date,
-  horario varchar(10),
-  horas integer,
+  horario_entrada varchar(10),
+  horario_saída varchar(10),
+  qtde_horas integer,
   cliente char(11),
   
   foreign key(quadra_id) references quadra(quadra_id)

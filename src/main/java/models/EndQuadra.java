@@ -39,13 +39,11 @@ public class EndQuadra {
 	
 	
 	public EndQuadra(String cep, String endereco, String municipio, String uf){
-		
 		this.setCep(cep);
 		this.setEndereco(endereco);
 		this.setMunicipio(municipio);
 		this.setUf(uf);
-		
-		
+
 	}
 	
 	public String[] toArray() {
@@ -60,24 +58,24 @@ public class EndQuadra {
 
 	}
 	
-public ArrayList<Usuario> listAll() {
+	public ArrayList<EndQuadra> listAll() {
 		
-		ArrayList<Usuario> listUsuarios = new ArrayList<Usuario>(); 
+		ArrayList<EndQuadra> listEndQuadra = new ArrayList<EndQuadra>(); 
 		ResultSet rs = this.getDBQuery().select("");
 		try {
 			while (rs.next()) {
-				Usuario tempUsuario = new Usuario(
+				EndQuadra tempEndQuadra = new EndQuadra(
 						rs.getString("cep"),
 						rs.getString("endereco"),
 						rs.getString("municipio"),
 						rs.getString("uf")
 				 );
-				listUsuarios.add(tempUsuario);
+				listEndQuadra.add(tempEndQuadra);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return(listUsuarios);
+		return(listEndQuadra);
 	}
 
 	public String getCep() {
