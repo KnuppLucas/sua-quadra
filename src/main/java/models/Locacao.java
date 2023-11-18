@@ -16,7 +16,7 @@ public class Locacao {
 	private String horario_entrada;
 	private String horario_saida;
 	private int qtde_horas;
-	private String cliente;
+	private int cliente;
 	
 	public Locacao() {
 		
@@ -38,7 +38,7 @@ public class Locacao {
 		new Gson().fromJson(json, this.getClass());
 	}
 	
-	public Locacao(int locacao_id, int quadra_id, String locacao_data, String horario_entrada, String horario_saida, int qtde_horas, String cliente) {
+	public Locacao(int locacao_id, int quadra_id, String locacao_data, String horario_entrada, String horario_saida, int qtde_horas, int cliente) {
 	        this.locacao_id = locacao_id;
 	        this.quadra_id = quadra_id;
 	        this.locacao_data = locacao_data;
@@ -76,7 +76,7 @@ public ArrayList<Locacao> listAll() {
 						rs.getString("horario_entrada"),
 						rs.getString("horario_saida"),
 						rs.getInt("qtde_horas"),
-						rs.getString("cliente")
+						rs.getInt("cliente")
 				 );
 				listLocacao.add(tempLocacao);
 			}
@@ -85,6 +85,23 @@ public ArrayList<Locacao> listAll() {
 		}
 		return(listLocacao);
 }
+
+public int save() {
+	if (this.getLocacao_id() > 0) {
+		return this.getDBQuery().update(this.toArray());
+	}else {
+		return this.getDBQuery().insert(this.toArray());
+	}
+}
+
+public int delete() {
+	if (this.getLocacao_id() > 0) {
+		return this.getDBQuery().delete(this.toArray());
+	}
+	return(0);
+}
+
+
 	
 	
 	public int getLocacao_id() {
@@ -123,10 +140,10 @@ public ArrayList<Locacao> listAll() {
 	public void setQtde_horas(int qtde_hotas) {
 		this.qtde_horas = qtde_hotas;
 	}
-	public String getCliente() {
+	public int getCliente() {
 		return cliente;
 	}
-	public void setCliente(String cliente) {
+	public void setCliente(int cliente) {
 		this.cliente = cliente;
 	}
 	

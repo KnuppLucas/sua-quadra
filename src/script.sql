@@ -33,37 +33,40 @@ CREATE TABLE usuarios(
   CONSTRAINT usuarios_ibfk_1 FOREIGN KEY (idNivelUsuario) REFERENCES nivelusuarios (idNivelUsuario)
 );
 
-CREATE TABLE end_quadra(
-    cep       CHAR(8) PRIMARY KEY NOT NULL,
+CREATE TABLE quadra(
+    quadra_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    titulo    VARCHAR(20),
+    descricao VARCHAR(200),
+    foto 	  VARCHAR(200),
+    tipo      VARCHAR(200),
+    cep       CHAR(8) NOT NULL,
+    preco     REAL,
     endereco  VARCHAR(255),
+    bairro    VARCHAR(100),
     municipio VARCHAR(50),
     uf	      CHAR(2)
 );
 
 
-CREATE TABLE quadra(
-    quadra_id    INTEGER PRIMARY KEY NOT NULL,
-    titulo    VARCHAR(20),
-    descricao VARCHAR(200),
-    tipo      VARCHAR(200),
-    cep       CHAR(8) NOT NULL,
-    preco     REAL,
-    
-    foreign key(cep) references end_quadra(cep)
-);
-
-
 CREATE TABLE locacao(
-  locacao_id INTEGER PRIMARY KEY NOT NULL,
+  locacao_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
   quadra_id INTEGER,
   locacao_data date,
   horario_entrada varchar(10),
-  horario_saída varchar(10),
+  horario_saida varchar(10),
   qtde_horas integer,
-  cliente char(11),
+  cliente integer,
   
-  foreign key(quadra_id) references quadra(quadra_id)
-  -- foreign key(cliente) references usuario(cpf)
+  foreign key(quadra_id) references quadra(quadra_id),
+  foreign key(cliente) references usuarios(idUsuario)
 );
 
+
+CREATE TABLE avaliacao(
+  avaliacao_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  locacao_id   INTEGER,
+  pontuacao    INTEGER,
+  comentario    TEXT,
+  foreign key(locacao_id) references locacao(locacao_id)
+);
 

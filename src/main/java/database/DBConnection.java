@@ -30,7 +30,7 @@ public class DBConnection {
 		this.setPort	("3306");
 		this.setSchema	("suaquadra");
 		this.setUser	("root");
-		this.setPassword("senha");
+		this.setPassword("");
 		this.doConnection();
 	}
 	
