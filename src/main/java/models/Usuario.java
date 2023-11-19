@@ -167,6 +167,38 @@ public class Usuario {
 		}	
 	}
 	
+	public Usuario ativo() {
+		
+		String where = "ativo = 'S'";
+		try {
+			ResultSet rs = this.getDBQuery().select(where);
+			if ( ! rs.next() ) {
+				return(new Usuario());
+			} else {
+				return(
+					new Usuario(
+						rs.getInt("idUsuario"),
+						rs.getString("email"),
+						rs.getString("senha"),
+						rs.getInt("idNivelUsuario"),
+						rs.getString("nome"),
+						rs.getString("cpf"),
+						rs.getString("endereco"),
+						rs.getString("bairro"),
+						rs.getString("cidade"),
+						rs.getString("uf"),
+						rs.getString("cep"),
+						rs.getString("telefone"),
+						rs.getString("foto"),
+						rs.getString("ativo")
+					)
+				);
+			}
+		} catch (SQLException e) {
+			return(new Usuario());
+		}	
+	}
+	
 	public Usuario checkEmail( String email) {
 		email =  email.replace("'", "`");
 		String where = "email = '"+email+"'";

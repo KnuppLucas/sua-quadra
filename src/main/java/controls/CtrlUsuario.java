@@ -2,6 +2,7 @@ package controls;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import models.Usuario;
 
@@ -36,6 +38,13 @@ public class CtrlUsuario extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String action = request.getParameter("action");
 		switch (action) {
+		case "test":{
+			ArrayList<Usuario> usuario = new Usuario().listAll();
+			//String outJson = usuario.toJson();
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			String outJson = gson.toJson(usuario);
+			out.write( outJson );
+		} break;
 		case "login": {
 			String email 	= request.getParameter("email");
 			String senha 	= request.getParameter("pswd");
@@ -46,8 +55,9 @@ public class CtrlUsuario extends HttpServlet {
 				request.getSession().setAttribute("email", usuario.getEmail() );
 				request.getSession().setAttribute("nome", usuario.getNome() );
 				request.getSession().setAttribute("idNivelUsuario", usuario.getIdNivelUsuario());
+				
 				usuario.setSenha("");
-			} else{
+			}else{
 				//Usuario não encontrato ou inátivo
 				usuario = new Usuario(0, "", "", 0, "", "", "", "", "", "", "", "", "", "");
 				request.getSession().invalidate();
@@ -82,7 +92,7 @@ public class CtrlUsuario extends HttpServlet {
 				}
 			}
 			String outJson = usuario.toJson();
-			out.write(outJson) ;
+			out.write(outJson);
 		} break;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + action);

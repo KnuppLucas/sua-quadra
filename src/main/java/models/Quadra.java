@@ -75,6 +75,10 @@ public class Quadra{
 		this.municipio = municipio;
 		this.uf = uf;
 	}
+	
+	public Quadra(int quadra_id) {
+		this.quadra_id = quadra_id;
+	}
 
 	
 public ArrayList<Quadra> listAll() {
@@ -103,6 +107,163 @@ public ArrayList<Quadra> listAll() {
 		}
 		return(listQuadra);
 }
+
+public ArrayList<Quadra> listData(String data_inicio, String data_fim) {
+	
+	ArrayList<Quadra> listQuadra = new ArrayList<Quadra>();
+	String a = "quadra_id NOT IN ("
+			+ " SELECT l.quadra_id"
+			+ " FROM locacao l"
+			+ " WHERE l.locacao_data BETWEEN '"+data_inicio+"' AND '"+data_fim+"'"
+			+ " OR l.locacao_data IS NULL)";
+	System.out.println("\n"+a);
+	ResultSet rs = this.getDBQuery().select(a);
+	System.out.println("\n"+a);
+	try {
+		while (rs.next()) {
+			Quadra tempQuadra = new Quadra(
+					rs.getInt("quadra_id"),
+					rs.getString("titulo"),
+					rs.getString("descricao"),
+					rs.getString("foto"),						
+					rs.getString("tipo"),
+					rs.getString("cep"),
+					rs.getDouble("preco"),
+					rs.getString("endereco"),
+					rs.getString("bairro"),
+					rs.getString("municipio"),
+					rs.getString("uf")
+			 );
+			listQuadra.add(tempQuadra);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return(listQuadra);
+}
+
+public ArrayList<Quadra> listEndereco(String uf) {
+	
+	ArrayList<Quadra> listQuadra = new ArrayList<Quadra>();
+	String a = "UF = '"+uf+"'";
+	ResultSet rs = this.getDBQuery().select(a);
+	try {
+		while (rs.next()) {
+			Quadra tempQuadra = new Quadra(
+					rs.getInt("quadra_id"),
+					rs.getString("titulo"),
+					rs.getString("descricao"),
+					rs.getString("foto"),						
+					rs.getString("tipo"),
+					rs.getString("cep"),
+					rs.getDouble("preco"),
+					rs.getString("endereco"),
+					rs.getString("bairro"),
+					rs.getString("municipio"),
+					rs.getString("uf")
+			 );
+			listQuadra.add(tempQuadra);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return(listQuadra);
+}
+
+public ArrayList<Quadra> listEndereco(String uf, String municipio) {
+	
+	ArrayList<Quadra> listQuadra = new ArrayList<Quadra>();
+	String a = "UF = '"+uf+
+			 "' AND lower(municipio) like lower('%"+municipio+"%')";
+	ResultSet rs = this.getDBQuery().select(a);
+	try {
+		while (rs.next()) {
+			Quadra tempQuadra = new Quadra(
+					rs.getInt("quadra_id"),
+					rs.getString("titulo"),
+					rs.getString("descricao"),
+					rs.getString("foto"),						
+					rs.getString("tipo"),
+					rs.getString("cep"),
+					rs.getDouble("preco"),
+					rs.getString("endereco"),
+					rs.getString("bairro"),
+					rs.getString("municipio"),
+					rs.getString("uf")
+			 );
+			listQuadra.add(tempQuadra);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return(listQuadra);
+}
+
+public ArrayList<Quadra> listEndereco(String uf, String municipio, String bairro) {
+	
+	ArrayList<Quadra> listQuadra = new ArrayList<Quadra>();
+	String a = "UF = '"+uf+
+			 "' AND lower(municipio) like lower('%"+municipio+"%')"+
+			 " AND lower(bairro) like lower('%"+bairro+"%')";
+	ResultSet rs = this.getDBQuery().select(a);
+	try {
+		while (rs.next()) {
+			Quadra tempQuadra = new Quadra(
+					rs.getInt("quadra_id"),
+					rs.getString("titulo"),
+					rs.getString("descricao"),
+					rs.getString("foto"),						
+					rs.getString("tipo"),
+					rs.getString("cep"),
+					rs.getDouble("preco"),
+					rs.getString("endereco"),
+					rs.getString("bairro"),
+					rs.getString("municipio"),
+					rs.getString("uf")
+			 );
+			listQuadra.add(tempQuadra);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return(listQuadra);
+}
+
+
+public ArrayList<Quadra> listDataEndereco(String data_inicio,String data_fim,String uf) {
+	
+	ArrayList<Quadra> listQuadra = new ArrayList<Quadra>();
+	String a = "UF = '"+uf+"'"
+			+ " AND quadra_id NOT IN ("
+			+ " SELECT l.quadra_id"
+			+ " FROM locacao l"
+			+ " WHERE l.locacao_data BETWEEN '"+data_inicio+"' AND '"+data_fim+"'"
+			+ " OR l.locacao_data IS NULL)";
+	ResultSet rs = this.getDBQuery().select(a);
+	try {
+		while (rs.next()) {
+			Quadra tempQuadra = new Quadra(
+					rs.getInt("quadra_id"),
+					rs.getString("titulo"),
+					rs.getString("descricao"),
+					rs.getString("foto"),						
+					rs.getString("tipo"),
+					rs.getString("cep"),
+					rs.getDouble("preco"),
+					rs.getString("endereco"),
+					rs.getString("bairro"),
+					rs.getString("municipio"),
+					rs.getString("uf")
+			 );
+			listQuadra.add(tempQuadra);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return(listQuadra);
+}
+
+
 
 public int save() {
 	if (this.getQuadra_id() > 0) {

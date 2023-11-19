@@ -46,11 +46,13 @@
 		$("#btnFrmLogin").click( function(){
 			var url = "usuario";
 			var dataForm = $("#frmLogin").serialize();
+			alert("status "+status);
 			//$("#msgRequest").html("HTTP REQUEST: "+dataForm);
 			
 			$.post( url, dataForm, function(data, status) {
-				//$("#msgResponse").html("HTTP RESPONSE:" + JSON.stringify( data ));
+				$("#msgResponse").html("HTTP RESPONSE:" + JSON.stringify( data ));
 				alert("Usuário validado, seja bem vindo "+data.nome);
+				alert("status "+status);
 			}, "json");
 			
 		});
