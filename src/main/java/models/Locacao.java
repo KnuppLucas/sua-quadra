@@ -48,6 +48,10 @@ public class Locacao {
 	        this.cliente = cliente;
 	}
 	
+	public Locacao(int locacao_id) {
+        this.locacao_id = locacao_id;
+	}
+	
 	public String[] toArray() {
 		return(
 			new String[] {

@@ -42,6 +42,10 @@ public class Avaliacao {
 		this.comentario = comentario;
 	}
 	
+	public Avaliacao(int avaliacao_id) {
+		this.avaliacao_id = avaliacao_id;
+	}
+	
 	public String[] toArray() {
 		return(
 			new String[] {
