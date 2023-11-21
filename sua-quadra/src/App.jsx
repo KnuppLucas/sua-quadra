@@ -13,7 +13,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" exact element={<Content />} />
-        <Route path="/item/:id" component={<ItemContent />} />
+        <Route path="/item/:id" element={<ItemContent />} />
       </Routes>
     </Router>
   )
