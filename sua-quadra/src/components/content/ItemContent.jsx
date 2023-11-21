@@ -1,6 +1,8 @@
-
+import { useParams } from 'react-router-dom';
 
 function ItemContent() {
+    const { id } = useParams();
+
   return (
     <div className="container mx-auto mt-8">
       {/* Seção de Imagem */}
@@ -15,7 +17,7 @@ function ItemContent() {
       {/* Botões Compartilhar e Salvar */}
       <div className="flex justify-between mb-4">
         <button className="bg-blue-500 text-white px-4 py-2 rounded">
-          Compartilhar
+          Compartilhar {id}
         </button>
         <button className="bg-green-500 text-white px-4 py-2 rounded">
           Salvar

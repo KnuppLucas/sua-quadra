@@ -13,6 +13,7 @@ function Content() {
         {quadras.map((quadra) => (
           <QuadraCard
             key={quadra.id}
+            id={quadra.id}
             imagemSrc={quadra.imagemSrc}
             endereco={quadra.endereco}
             categoria={quadra.categoria}
