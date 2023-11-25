@@ -102,7 +102,7 @@ public class CtrlQuadra extends HttpServlet {
 				}
 			}break;
 			case "tipo": {
-			    String tipo = request.getParameter("tipo");
+			    String tipo = request.getParameter("type");
 			    ArrayList<Quadra> quadra = new Quadra().listByType(tipo);
 			    Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			    String outJson = gson.toJson(quadra);
