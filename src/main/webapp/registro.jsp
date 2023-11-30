@@ -126,36 +126,37 @@
 </div>
 
 <script>
-    function registrar() {
-        var email = $("#email").val();
-        var pswd = $("#pswd").val();
-        var nome = $("#nome").val();
+function registrar() {
+    var email = $("#email").val();
+    var pswd = $("#pswd").val();
+    var nome = $("#nome").val();
 
-        $.ajax({
-            type: "POST",
-            url: "usuario",
-            data: {
-                action: "save",
-                email: email,
-                pswd: pswd,
-                nome: nome
-            },
-            done: function (data) {
-                // Lógica de redirecionamento ou manipulação de sucesso
-                console.log(data);
-                window.location.href = "content.jsp";
-            },
-            fail: function (error) {
-                // Lógica de manipulação de erro
-                console.error(error);
-                exibirErroModal();
-            }
-        });
-    }
+    $.ajax({
+        type: "POST",
+        url: "usuario",
+        data: {
+            action: "save",
+            email: email,
+            pswd: pswd,
+            nome: nome
+        },
+        success: function (data) {
+            // Lógica de redirecionamento ou manipulação de sucesso
+            console.log(data);
 
-    function exibirErroModal() {
-        $("#erroModal").modal("show");
-    }
+            // Obtenha o ID do cliente após o cadastro e armazene na sessão
+            var clienteId = // Lógica para obter o ID do cliente após o cadastro
+            sessionStorage.setItem("clienteId", clienteId);
+
+            window.location.href = "content.jsp";
+        },
+        error: function (error) {
+            // Lógica de manipulação de erro
+            console.error(error);
+            exibirErroModal();
+        }
+    });
+}
 </script>
 
 <script type="text/javascript">

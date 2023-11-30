@@ -7,6 +7,7 @@
     String dataReserva = request.getParameter("dataReserva");
     String horarioEntrada = request.getParameter("horarioEntrada");
     String horarioSaida = request.getParameter("horarioSaida");
+    int clienteId = (int) request.getSession().getAttribute("idUsuario");
 
     // Realize as operações necessárias para salvar a reserva
     // Certifique-se de ajustar os métodos da classe Locacao conforme necessário
@@ -19,6 +20,8 @@
     locacao.setLocacao_data(dataReserva);
     locacao.setHorario_entrada(horarioEntrada);
     locacao.setHorario_saida(horarioSaida);
+    locacao.setCliente(clienteId);
+    
 
     // Adicione mais informações se necessário
     // ...
@@ -27,7 +30,7 @@
     locacao.save();
 
     // Redirecione o usuário para a página de detalhes da quadra
-    response.sendRedirect("detalhesQuadra.jsp?id=" + quadraId);
+    response.sendRedirect("details.jsp?id=" + quadraId);
 %>
 
 <!DOCTYPE html>

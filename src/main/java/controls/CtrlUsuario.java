@@ -46,24 +46,26 @@ public class CtrlUsuario extends HttpServlet {
 			out.write( outJson );
 		} break;
 		case "login": {
-			String email 	= request.getParameter("email");
-			String senha 	= request.getParameter("pswd");
-			Usuario usuario = new Usuario().checkLogin(email, senha);
-			if( usuario.getAtivo().equals("S")) {
-				//Usuario Validado com Sucesso
-				request.getSession().setAttribute("idUsuario", usuario.getIdUsuario() );
-				request.getSession().setAttribute("email", usuario.getEmail() );
-				request.getSession().setAttribute("nome", usuario.getNome() );
-				request.getSession().setAttribute("idNivelUsuario", usuario.getIdNivelUsuario());
-				
-				usuario.setSenha("");
-			}else{
-				//Usuario não encontrato ou inátivo
-				usuario = new Usuario(0, "", "", 0, "", "", "", "", "", "", "", "", "", "");
-				request.getSession().invalidate();
-			}
-			String outJson = usuario.toJson();
-			out.write( outJson ) ;
+		    String email = request.getParameter("email");
+		    String senha = request.getParameter("pswd");
+		    Usuario usuario = new Usuario().checkLogin(email, senha);
+		    if (usuario.getAtivo().equals("S")) {
+		        // Usuário Validado com Sucesso
+		        request.getSession().setAttribute("idUsuario", usuario.getIdUsuario());
+		        request.getSession().setAttribute("email", usuario.getEmail());
+		        request.getSession().setAttribute("nome", usuario.getNome());
+		        request.getSession().setAttribute("idNivelUsuario", usuario.getIdNivelUsuario());
+
+		        usuario.setSenha("");
+		        
+		        request.getSession().setAttribute("clienteId", usuario.getIdUsuario());
+		    } else {
+		        // Usuário não encontrado ou inativo
+		        usuario = new Usuario(0, "", "", 0, "", "", "", "", "", "", "", "", "", "");
+		        request.getSession().invalidate();
+		    }
+		    String outJson = usuario.toJson();
+		    out.write(outJson);
 		} break;
 		case "save": {
 			String email 	= request.getParameter("email");

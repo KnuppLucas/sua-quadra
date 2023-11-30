@@ -2,7 +2,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <!-- Substituir texto por imagem do logo -->
-                <a class="navbar-brand" href="#!"><img src="./images/logo.jpeg" style="max-height: 60px; alt="Logo do Site"></a>
+                <a class="navbar-brand" href="content.jsp"><img src="./images/logo.jpeg" style="max-height: 60px; alt="Logo do Site"></a>
                 
                 <!-- Restante do código permanece inalterado -->
                 

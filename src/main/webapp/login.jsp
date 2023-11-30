@@ -31,34 +31,35 @@
 </div>
 
 <script>
-    function login() {
-        var email = $("#email").val();
-        var pswd = $("#pswd").val();
+function login() {
+    var email = $("#email").val();
+    var pswd = $("#pswd").val();
 
-        $.ajax({
-            type: "POST",
-            url: "usuario",
-            data: {
-                action: "login",
-                email: email,
-                pswd: pswd
-            },
-            success: function (data) {
-                // Lógica de redirecionamento ou manipulação de sucesso
-                console.log(data);
-                window.location.href = "content.jsp";
-            },
-            error: function (error) {
-                // Lógica de manipulação de erro
-                console.error(error);
-                exibirErroModal();
-            }
-        });
-    }
+    $.ajax({
+        type: "POST",
+        url: "usuario",
+        data: {
+            action: "login",
+            email: email,
+            pswd: pswd
+        },
+        success: function (data) {
+            // Lógica de redirecionamento ou manipulação de sucesso
+            console.log(data);
 
-    function exibirErroModal() {
-        $("#erroModal").modal("show");
-    }
+            // Obtenha o ID do cliente após o login e armazene na sessão
+            var clienteId = // Lógica para obter o ID do cliente após o login
+            sessionStorage.setItem("clienteId", clienteId);
+
+            window.location.href = "content.jsp";
+        },
+        error: function (error) {
+            // Lógica de manipulação de erro
+            console.error(error);
+            exibirErroModal();
+        }
+    });
+}
 </script>
 
 <!-- Modal de Erro -->
