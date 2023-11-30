@@ -7,7 +7,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="container mt-5">
 <%@ include file="navbar.jsp" %>
@@ -35,7 +34,6 @@
 
         function buscarQuadrasPorTipo(tipo) {
             var url = "quadra?action=tipo&type=" + tipo;
-            
 
             $.get(url, function (data, status) {
                 if (status === "success") {

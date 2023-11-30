@@ -265,7 +265,7 @@ public ArrayList<Quadra> listDataEndereco(String data_inicio,String data_fim,Str
 
 public ArrayList<Quadra> listByType(String tipo) {
     ArrayList<Quadra> listQuadra = new ArrayList<>();
-    String condition = "lower(tipo) like lower('%" + tipo + "%')";
+    String condition = "lower(tipo) = lower('" + tipo + "')";
     ResultSet rs = this.getDBQuery().select(condition);
     try {
         while (rs.next()) {
