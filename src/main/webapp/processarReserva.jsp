@@ -30,7 +30,7 @@
     locacao.save();
 
     // Redirecione o usuário para a página de detalhes da quadra
-    response.sendRedirect("details.jsp?id=" + quadraId);
+    // response.sendRedirect("details.jsp?id=" + quadraId);
 %>
 
 <!DOCTYPE html>
@@ -46,10 +46,18 @@
 <body>
 <%@ include file="navbar.jsp" %>
 <%@ include file="header.jsp" %>
-<!-- Adicione um link ou botão para excluir a reserva -->
-<a href="#" id="btnExcluir" class="btn btn-danger" data-toggle="modal" data-target="#confirmacaoExclusao">
-    Excluir Reserva <i class="fas fa-times"></i>
-</a>
+<div class="container mt-5">
+    <h2>Detalhes da reserva</h2>
+    <p>Quadra ID: <%= quadraId %></p>
+    <p>Data da Reserva: <%= dataReserva %></p>
+    <p>Horário de Entrada: <%= horarioEntrada %></p>
+    <p>Horário de Saída: <%= horarioSaida %></p>
+
+    <!-- Adicione os botões de cancelar e concluir reserva -->
+    <a href="#" id="btnExcluir" class="btn btn-danger" data-toggle="modal" data-target="#confirmacaoExclusao">
+        Excluir Reserva <i class="fas fa-times"></i>
+    </a>
+</div>
 
 <!-- Adicione um modal de confirmação de exclusão -->
 <div class="modal" id="confirmacaoExclusao">
