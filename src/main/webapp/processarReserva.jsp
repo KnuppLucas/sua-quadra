@@ -1,17 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="models.Locacao"%>
-
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Date"%>
 <%
+
+
     String quadraId = request.getParameter("quadraId");
     String dataReserva = request.getParameter("dataReserva");
     String horarioEntrada = request.getParameter("horarioEntrada");
     String horarioSaida = request.getParameter("horarioSaida");
     int clienteId = (int) request.getSession().getAttribute("idUsuario");
+    
+    SimpleDateFormat formato = new SimpleDateFormat("HH:mm");
+
+    Date entrada = formato.parse(horarioEntrada);
+    Date saida = formato.parse(horarioSaida);
+    
+    long diferencaEmMillis = saida.getTime() - entrada.getTime();
+    int qtde_horas = (int) (diferencaEmMillis / (60 * 60 * 1000));
+    
+   
 
     // Realize as operações necessárias para salvar a reserva
-    // Certifique-se de ajustar os métodos da classe Locacao conforme necessário
-
+    // Certifique-se de ajustar os métodos da classe Locacao conforme necessári
+    
     // Crie uma instância de Locacao
     Locacao locacao = new Locacao();
 
@@ -21,6 +34,7 @@
     locacao.setHorario_entrada(horarioEntrada);
     locacao.setHorario_saida(horarioSaida);
     locacao.setCliente(clienteId);
+    locacao.setQtde_horas(qtde_horas);
     
 
     // Adicione mais informações se necessário
