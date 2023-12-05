@@ -60,13 +60,13 @@
 	    function criarQuadraCard(quadra) {
 	        var card = $("<div class='col mb-5'></div>");
 	        card.append("<div class='card h-100'>");
-	        card.find(".card").append("<img class='card-img-top' src='" + quadra.foto + "' alt='...' />");
+	        card.find(".card").append("<img class='card-img-top img-fluid' src='" + quadra.foto + "' alt='...' />");
 	        card.find(".card").append("<div class='card-body p-4'>");
 	        card.find(".card-body").append("<div class='text-center'>");
 	        card.find(".text-center").append("<h5 class='fw-bolder'>" + quadra.titulo + "</h5>");
 	        card.find(".text-center").append("<span class='text-muted'>" + quadra.descricao + "</span>");
 	        card.find(".card").append("<div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>");
-	        card.find(".card-footer").append("<div class='text-center'><a class='btn btn-outline-dark mt-auto' href='pagina_quadra.jsp?id=" + quadra.quadra_id + "'>Ver detalhes</a></div>");
+	        card.find(".card-footer").append("<div class='text-center'><a class='btn btn-outline-dark mt-auto' href='pagina_quadra.jsp?id=" + quadra.id + "'>Ver detalhes</a></div>");
 	
 	        return card;
 	    }

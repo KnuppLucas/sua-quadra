@@ -3,28 +3,22 @@
 <%@ page import="models.Locacao"%>
 <%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.util.Date"%>
+
 <%
-
-
     String quadraId = request.getParameter("quadraId");
     String dataReserva = request.getParameter("dataReserva");
     String horarioEntrada = request.getParameter("horarioEntrada");
     String horarioSaida = request.getParameter("horarioSaida");
     int clienteId = (int) request.getSession().getAttribute("idUsuario");
-    
-    SimpleDateFormat formato = new SimpleDateFormat("HH:mm");
 
-    Date entrada = formato.parse(horarioEntrada);
+    SimpleDateFormat formato = new SimpleDateFormat("HH:mm");
+    // Realize as operações necessárias para salvar a reserva
+    // Certifique-se de ajustar os métodos da classe Locacao conforme necessário
+	Date entrada = formato.parse(horarioEntrada);
     Date saida = formato.parse(horarioSaida);
     
     long diferencaEmMillis = saida.getTime() - entrada.getTime();
     int qtde_horas = (int) (diferencaEmMillis / (60 * 60 * 1000));
-    
-   
-
-    // Realize as operações necessárias para salvar a reserva
-    // Certifique-se de ajustar os métodos da classe Locacao conforme necessári
-    
     // Crie uma instância de Locacao
     Locacao locacao = new Locacao();
 
@@ -67,6 +61,9 @@
     <p>Horário de Entrada: <%= horarioEntrada %></p>
     <p>Horário de Saída: <%= horarioSaida %></p>
 
+	<button id="btnConcluirReserva" class="btn btn-success">
+    	Concluir Reserva <i class="fas fa-check"></i>
+	</button>
     <!-- Adicione os botões de cancelar e concluir reserva -->
     <a href="#" id="btnExcluir" class="btn btn-danger" data-toggle="modal" data-target="#confirmacaoExclusao">
         Excluir Reserva <i class="fas fa-times"></i>
@@ -120,6 +117,12 @@
 <script>
     $(document).ready(function () {
         // Manipulador de clique no botão "Excluir"
+        $("#btnExcluir").click(function () {
+            // Abre o modal de confirmação de exclusão
+            $("#confirmacaoExclusao").modal("show");
+        });
+
+        // Manipulador de clique no botão "Confirmar Exclusão" no modal
         $("#btnConfirmarExclusao").click(function () {
             // Obtém o locacao_id da sua página JSP (substitua pelo valor correto)
             var locacao_id = <%= locacao.getLocacao_id() %>;
@@ -133,6 +136,7 @@
                     locacao_id: locacao_id
                 },
                 success: function (data) {
+                    // Redireciona para a página content.jsp após a exclusão
                     window.location.href = "content.jsp";
                 },
                 error: function (error) {
@@ -144,6 +148,15 @@
         function exibirErroModal() {
             $("#erroModal").modal("show");
         }
+
+        // Manipulador de clique no botão "Concluir Reserva"
+        $("#btnConcluirReserva").click(function () {
+            // Mostra um alerta informando que a reserva foi feita
+            alert("Reserva concluída com sucesso!");
+
+            // Redireciona para a página content.jsp
+            window.location.href = "content.jsp";
+        }); 
     });
 </script>
 <%@ include file="bottom.jsp" %>

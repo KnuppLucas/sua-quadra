@@ -19,7 +19,7 @@
         function criarQuadraCard(quadra) {
             var card = $("<div class='col mb-5'></div>");
             card.append("<div class='card h-100'>");
-            card.find(".card").append("<img class='card-img-top' src='" + quadra.foto + "' alt='...' />");
+            card.find(".card").append("<img class='card-img-top img-fluid' src='" + quadra.foto + "' alt='...' />");
             card.find(".card").append("<div class='card-body p-4'>");
             card.find(".card-body").append("<div class='text-center'>");
             card.find(".text-center").append("<h5 class='fw-bolder'>" + quadra.titulo + "</h5>");

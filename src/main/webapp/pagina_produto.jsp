@@ -58,7 +58,7 @@
         %>
 
                 <div class="card">
-                    <img src="<%= foto %>" class="card-img-top" alt="Imagem da Quadra">
+                    <img src="<%= foto %>" class="card-img-top img-fluid" alt="Imagem da Quadra">
                     <div class="card-body">
                         <h5 class="card-title"><%= titulo %></h5>
                         <p class="card-text"><%= descricao %></p>
